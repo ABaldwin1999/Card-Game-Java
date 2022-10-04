@@ -32,8 +32,8 @@ public class CardGame {
             }
         }
     }
-    public Card dealCard(){
-        return deck.get(0);
+    public Card dealCard(int cardNum){
+        return deck.get(cardNum);
     }
     public void sortDeckInNumberOrder(){
         for (int i = 0; i < deck.size(); i++) {
@@ -45,19 +45,24 @@ public class CardGame {
         }
     }
     public void sortDeckIntoSuits(){
-        for (int i = 0; i < 52; i++) {
-            switch(deck.get(i).getSuit()){
-                case "♡":
-                    Collections.swap(deck,deck.get(i).getValue()-2,i);
-                case "♢":
-                    Collections.swap(deck,deck.get(i).getValue()+10,i);
-                case "♤":
-                    Collections.swap(deck,deck.get(i).getValue()+23,i);
-                case "♧":
-                    Collections.swap(deck,deck.get(i).getValue()+36,i);
-            }
+        for (int j =0; j<52;j++){
+            for (int i = 0; i < 52; i++) {
+                switch (deck.get(i).getSuit()) {
+                    case "♡":
+                        Collections.swap(deck, deck.get(i).getValue() - 2, i);
+                    case "♢":
+                        Collections.swap(deck, deck.get(i).getValue() + 10, i);
+                    case "♤":
+                        Collections.swap(deck, deck.get(i).getValue() + 23, i);
+                    case "♧":
+                        Collections.swap(deck, deck.get(i).getValue() + 36, i);
+                }
 
+            }
         }
+    }
+    public void sortDeckRandomly(){
+        Collections.shuffle(deck, new Random());
     }
 }
 
