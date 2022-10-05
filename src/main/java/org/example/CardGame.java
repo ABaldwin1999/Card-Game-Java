@@ -3,8 +3,12 @@ import java.util.*;
 import java.util.ArrayList;
 
 public class CardGame {
-    private static final ArrayList<Card> deck = new ArrayList<>();
+    private static ArrayList<Card> deck = new ArrayList<>();
     private static final String [] suits= {"♡","♢","♤","♧"};
+
+    public CardGame() {
+        makeDeck();
+    }
 
     static void getDeck() {
         for( Card card : deck){

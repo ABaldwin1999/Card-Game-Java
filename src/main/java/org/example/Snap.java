@@ -20,10 +20,12 @@ public class Snap extends CardGame {
 
     public void playSnap() {
         Player player1 = new Player(Player.inputName(1));
+        System.out.println(player1.getPlayerName());
         Player player2 = new Player(Player.inputName(2));
         System.out.println("Press enter to play");
         for (int i = 0; i < 51; i++) {
             Player currentPlayer = Player.chooseCurrentPlayer(player1,player2,i);
+            sortDeckRandomly();
             snapRound(i);
             Scanner scanner = new Scanner(System.in);
             String declare = "";
