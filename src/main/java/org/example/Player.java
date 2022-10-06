@@ -19,16 +19,16 @@ public class Player {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input player name");
         String name = "";
-//       try {
+       try {
         name =scanner.nextLine();
         System.out.println(name);
-//        }
-//        catch(Exception e) {
-//            inputName(num);
-//        }
-//        if (name ==""){
-//            inputName(num);
-//        }
+        }
+        catch(Exception e) {
+            inputName(num);
+        }
+        if (name ==""){
+            inputName(num);
+        }
         System.out.println("Player " + num + ": " + name);
         return name;
     }
