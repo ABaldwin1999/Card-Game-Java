@@ -1,7 +1,7 @@
 package org.example;
 
 import java.util.Scanner;
-import java.util.concurrent.*;
+
 
 public class Snap extends CardGame {
     private boolean snap = false;
@@ -29,17 +29,8 @@ public class Snap extends CardGame {
             if(!snap) {
                 Player currentPlayer = Player.chooseCurrentPlayer(player1, player2, i);
                 snapRound(i);
-                Scanner scanner = new Scanner(System.in);
-                String declare =getChoiceWithTimer();
-                long startTime = System.currentTimeMillis();
-//                try {
-//                    declare = scanner.nextLine();
-//                } catch (Exception e) {
-//                }
-
-                long endTime = System.currentTimeMillis();
-                long elapsedTime = endTime-startTime;
-                if (declare.equalsIgnoreCase("snap")) {
+                String choice =getChoiceWithTimer();
+                if (choice.equalsIgnoreCase("snap")) {
                     winGame(currentPlayer);
                     if(snap){
                         return;
@@ -50,28 +41,24 @@ public class Snap extends CardGame {
                 }
             }
             else{
-                System.out.println("Unlucky! no matches!");
+                System.out.println("Unlucky! No snaps!");
                 return;
             }
         }
     }
-    private String getChoiceWithTimer(){
-        Callable<String> k = () -> new Scanner(System.in).nextLine();
+    private String getChoiceWithTimer() {
+        Scanner scan = new Scanner(System.in);
         long start= System.currentTimeMillis();
         String choice="";
-        ExecutorService l = Executors.newFixedThreadPool(1);
-        Future<String> g;
-        g= l.submit(k);
-        while(System.currentTimeMillis()-start<3000 && !g.isDone()){
-            // Wait for future
+        try{
+            choice = scan.nextLine();
+        } catch (Exception e) {}
+        long end = System.currentTimeMillis();
+        if(end-start>3000 && choice.equalsIgnoreCase("snap")&&snap){
+            choice ="";
+            System.out.println("Too slow!");
         }
-        if(g.isDone()){
-            try {
-                choice=g.get();
-            } catch (InterruptedException | ExecutionException e) {
-            }
-        }
-        g.cancel(true);
         return choice;
     }
+
 }
